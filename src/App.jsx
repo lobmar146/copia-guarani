@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import {
-  Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem, Snackbar,
+  Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar,
   Table, TableBody, TableCell, TableHead, TableRow, ToggleButton, ToggleButtonGroup, Typography,
 } from '@mui/material'
 import { COMISION, CONDICIONES, ESCALA_PROMOCION, ESCALA_REGULARIDAD, NOTAS, RESULTADOS, STUDENTS, emptyRow } from './data.js'
@@ -62,18 +62,6 @@ export default function App() {
       }
       return out
     })
-
-  // "Autocompletar": completa lo que falta (fecha de hoy, resultado y condición) a partir de la nota.
-  const autocompletar = () => {
-    aplicar((tipo, r) => {
-      if (!r.nota) return
-      if (!r.fecha) r.fecha = todayStr()
-      const d = tipo === 'cursada' ? derivarCursada(r.nota) : derivarPromocion(r.nota)
-      if (!r.resultado) r.resultado = d.resultado
-      if (tipo === 'cursada' && !r.condicion) r.condicion = d.condicion
-    })
-    notify('Se completaron fecha, resultado y condición de las filas que tienen nota.', 'success')
-  }
 
   // "Calcular Notas": recalcula resultado y condición según la escala, pisando lo cargado.
   const calcular = () => {
@@ -143,7 +131,6 @@ export default function App() {
           <Typography sx={{ fontSize: 12, color: '#777' }}>{COMISION.materia} · {COMISION.comision} · {COMISION.periodo}</Typography>
         </Box>
         <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-          <Button id="btn-autocompletar" {...gridBtn} onClick={autocompletar}>Autocompletar</Button>
           <Button id="btn-calcular" {...gridBtn} onClick={calcular}>Calcular Notas</Button>
           <Button id="btn-escala-regularidad" {...gridBtn} onClick={() => setEscala('reg')}>Ver escala de notas para regularidad</Button>
           <Button id="btn-escala-promocion" {...gridBtn} onClick={() => setEscala('pro')}>Ver escala de notas para promoción</Button>
@@ -200,13 +187,28 @@ export default function App() {
       </Table>
 
       {/* Errores de validación */}
-      <Dialog open={erroresOpen} onClose={() => setErroresOpen(false)} maxWidth="sm" fullWidth>
+      <Dialog open={erroresOpen} onClose={() => setErroresOpen(false)} scroll="paper" maxWidth="md" fullWidth>
         <DialogTitle sx={{ color: '#d32f2f' }}>No se pudo guardar: revisá los datos</DialogTitle>
         <DialogContent dividers id="dialog-errores">
           <Alert severity="error" sx={{ mb: 1 }}>Se encontraron {errores.length} problema(s). Los campos con error quedaron marcados en rojo.</Alert>
-          <List dense>
-            {errores.map((e, i) => <ListItem key={i} sx={{ display: 'list-item', ml: 2, p: 0 }}>{e.msg}</ListItem>)}
-          </List>
+          <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1, overflow: 'hidden' }}>
+            {errores.map((e, i) => {
+              const [quien, ...resto] = e.msg.split(' – ')
+              return (
+                <Box key={i} sx={{ display: 'flex', gap: 1.5, alignItems: 'flex-start', px: 2, py: 1.25, bgcolor: i % 2 ? '#fff' : '#f5f7fa', borderTop: i ? '1px solid #eee' : 0 }}>
+                  <Box sx={{ minWidth: 24, height: 24, borderRadius: '50%', bgcolor: '#d32f2f', color: '#fff', fontSize: 12, fontWeight: 700, display: 'grid', placeItems: 'center', mt: '2px' }}>{i + 1}</Box>
+                  <Box>
+                    {resto.length ? (
+                      <>
+                        <Typography sx={{ fontWeight: 700, fontSize: 14 }}>{quien}</Typography>
+                        <Typography sx={{ fontSize: 14, color: '#444' }}>{resto.join(' – ')}</Typography>
+                      </>
+                    ) : <Typography sx={{ fontSize: 14 }}>{e.msg}</Typography>}
+                  </Box>
+                </Box>
+              )
+            })}
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button id="btn-cerrar-errores" onClick={() => {

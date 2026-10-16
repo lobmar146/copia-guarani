@@ -15,7 +15,7 @@ Los campos tienen `id` y `name` = `{tipo}-{dni}-{campo}`:
 
 | Campo | Tipo | Valores |
 |---|---|---|
-| `fecha` | texto | `dd/mm/aaaa`, no futura |
+| `fecha` | texto | `dd/mm/aaaa` |
 | `nota` | select | `1`..`10` (vacío si Ausente) |
 | `resultado` | select | `Aprobado`, `Reprobado`, `Ausente` |
 | `condicion` (solo cursada) | select | `Regular`, `Libre`, `Promoción` |
@@ -23,7 +23,7 @@ Los campos tienen `id` y `name` = `{tipo}-{dni}-{campo}`:
 
 Ejemplo: `#cursada-30111001-nota`, `#promocion-30111001-fecha`.
 
-Botones: `#btn-autocompletar`, `#btn-calcular`, `#btn-guardar`, `#btn-pdf`, `#autopromo-si` / `#autopromo-no`.
+Botones: `#btn-calcular`, `#btn-guardar`, `#btn-pdf`, `#autopromo-si` / `#autopromo-no`.
 Buscador: `#busqueda-apellido`. Filtro: `#filtro-acta`.
 
 Si falta algún dato o hay incoherencias, "Guardar" abre `#dialog-errores` con la lista y marca los campos en rojo.

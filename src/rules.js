@@ -37,18 +37,11 @@ const label = (tipo) => (tipo === 'cursada' ? 'Cursada' : 'Promoción')
 function validarFila(tipo, r, cursada) {
   const errs = []
   const add = (campo, msg) => errs.push({ campo, msg })
-  const hoy = new Date()
-  hoy.setHours(23, 59, 59, 999)
 
   if (!r.fecha.trim()) add('fecha', 'Falta la fecha (dd/mm/aaaa).')
   else {
     const f = parseFecha(r.fecha)
     if (!f) add('fecha', `La fecha "${r.fecha}" no es válida. Usá el formato dd/mm/aaaa.`)
-    else if (f > hoy) add('fecha', 'La fecha no puede ser futura.')
-    else if (tipo === 'promocion') {
-      const fc = parseFecha(cursada.fecha || '')
-      if (fc && f < fc) add('fecha', 'La fecha de promoción no puede ser anterior a la de cursada.')
-    }
   }
 
   if (!r.resultado) add('resultado', 'Falta el resultado.')
