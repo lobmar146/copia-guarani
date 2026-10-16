@@ -1,0 +1,12 @@
+{
+  "fecha": "10/03/2026",
+  "tipo": "Práctica",
+  "horas": "4",
+  "tema": "Introducción a HTML",
+  "asistencias": [
+    { "dni": "30111001", "estado": "Presente", "observaciones": "" },
+    { "dni": "30111002", "estado": "Tarde", "observaciones": "" },
+    { "dni": "30111003", "estado": "Ausente", "observaciones": "" },
+    { "dni": "30111004", "estado": "Justificado", "observaciones": "Certificado médico" }
+  ]
+}

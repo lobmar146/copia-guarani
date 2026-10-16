@@ -30,3 +30,25 @@ Si falta algún dato o hay incoherencias, "Guardar" abre `#dialog-errores` con l
 Al guardar bien aparece `#dialog-exito` con `#btn-descargar-acta` (PDF del acta).
 
 Ver `ejemplo-carga.json` para el formato de datos de entrada.
+
+## Pantallas (rutas por hash)
+
+| Ruta | Pantalla |
+|---|---|
+| `/#/cursada` | Carga de notas de cursada (ver arriba) |
+| `/#/asistencia` | Carga de asistencia por clase |
+| `/#/finales` | Carga de notas de examen final |
+
+### Asistencia (`ejemplo-asistencia.json`)
+- Cabecera: `#asistencia-fecha` (dd/mm/aaaa), `#asistencia-tipo`, `#asistencia-horas`, `#asistencia-tema` (opcional).
+- Radios por alumno: `#asistencia-{dni}-{presente|ausente|tarde|justificado}` (name `asistencia-{dni}`). Observaciones: `#asistencia-{dni}-observaciones`.
+- Botones: `#btn-todos-presentes`, `#btn-limpiar-asistencia`, `#btn-guardar-asistencia`, `#btn-pdf-asistencia`.
+- Reglas: todos los alumnos deben tener estado; "Justificado" exige observación; no se repite fecha+tipo de clase.
+- Éxito: `#dialog-exito-asistencia` → `#btn-descargar-asistencia` (PDF). Errores: `#dialog-errores-asistencia`.
+
+### Examen final (`ejemplo-final.json`)
+- Cabecera: `#final-mesa`, `#final-fecha`, `#final-libro` (numérico), `#final-folio` (numérico), `#final-presidente`.
+- Por alumno: `#final-{dni}-nota`, `#final-{dni}-resultado`, `#final-{dni}-observaciones`.
+- Los alumnos "Promocionado" no rinden: sus campos están deshabilitados (hay que saltearlos).
+- Nota ≥ 4 aprueba. Botones: `#btn-calcular-final`, `#btn-guardar-final`, `#btn-pdf-final`.
+- Éxito: `#dialog-exito-final` → `#btn-descargar-acta-final`. Errores: `#dialog-errores-final`.

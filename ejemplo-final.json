@@ -1,0 +1,12 @@
+{
+  "mesa": "Julio 2026 - 1er llamado",
+  "fecha": "20/07/2026",
+  "libro": "12",
+  "folio": "45",
+  "presidente": "Prof. Pérez",
+  "notas": [
+    { "dni": "30111002", "nota": "7", "resultado": "Aprobado", "observaciones": "" },
+    { "dni": "30111003", "nota": "2", "resultado": "Reprobado", "observaciones": "" },
+    { "dni": "30111004", "nota": "", "resultado": "Ausente", "observaciones": "No se presentó" }
+  ]
+}
