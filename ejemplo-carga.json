@@ -1,0 +1,6 @@
+[
+  { "dni": "30111001", "cursada": { "fecha": "15/06/2026", "nota": "8", "resultado": "Aprobado", "condicion": "Promoción", "observaciones": "" }, "promocion": { "fecha": "15/06/2026", "nota": "8", "resultado": "Aprobado", "observaciones": "" } },
+  { "dni": "30111002", "cursada": { "fecha": "15/06/2026", "nota": "5", "resultado": "Aprobado", "condicion": "Regular", "observaciones": "Debe rendir final" } },
+  { "dni": "30111003", "cursada": { "fecha": "15/06/2026", "nota": "2", "resultado": "Reprobado", "condicion": "Libre", "observaciones": "" } },
+  { "dni": "30111004", "cursada": { "fecha": "15/06/2026", "nota": "", "resultado": "Ausente", "condicion": "Libre", "observaciones": "No se presentó" } }
+]
