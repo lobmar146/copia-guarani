@@ -49,6 +49,5 @@ Ver `ejemplo-carga.json` para el formato de datos de entrada.
 ### Examen final (`ejemplo-final.json`)
 - Cabecera: `#final-mesa`, `#final-fecha`, `#final-libro` (numérico), `#final-folio` (numérico), `#final-presidente`.
 - Por alumno: `#final-{dni}-nota`, `#final-{dni}-resultado`, `#final-{dni}-observaciones`.
-- Los alumnos "Promocionado" no rinden: sus campos están deshabilitados (hay que saltearlos).
 - Nota ≥ 4 aprueba. Botones: `#btn-calcular-final`, `#btn-guardar-final`, `#btn-pdf-final`.
 - Éxito: `#dialog-exito-final` → `#btn-descargar-acta-final`. Errores: `#dialog-errores-final`.

@@ -40,8 +40,8 @@ export const emptyRow = () => ({ fecha: '', nota: '', resultado: '', condicion: 
 
 // Condición con la que cada alumno llega al examen final.
 export const FINAL_CONDICION = {
-  '30111001': 'Promocionado', '30111002': 'Regular', '30111003': 'Libre', '30111004': 'Libre',
-  '30111005': 'Promocionado', '30111006': 'Regular', '30111007': 'Regular', '30111008': 'Regular',
+  '30111001': 'Regular', '30111002': 'Regular', '30111003': 'Libre', '30111004': 'Libre',
+  '30111005': 'Regular', '30111006': 'Regular', '30111007': 'Regular', '30111008': 'Regular',
   '30111009': 'Libre', '30111010': 'Regular', '30111011': 'Regular',
 }
 export const MESAS = [
