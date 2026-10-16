@@ -2,16 +2,10 @@ import { Box, Typography } from '@mui/material'
 import { COMISION } from './data.js'
 
 const NAV = ['Cursadas', 'Clases', 'Exámenes', 'Reportes ▾', 'Encuestas ▾', 'Derechos ▾', 'Cursos']
-// ruta: null => pestaña decorativa
 const TABS = [
-  { label: 'Inicio', ruta: null },
   { label: 'Cargar Notas', ruta: 'cursada' },
   { label: 'Asistencia', ruta: 'asistencia' },
   { label: 'Exámenes finales', ruta: 'finales' },
-  { label: 'Alumnos', ruta: null },
-  { label: 'Evaluaciones', ruta: null },
-  { label: 'Actas', ruta: null },
-  { label: 'Moodle', ruta: null },
 ]
 
 export default function Header({ ruta }) {
@@ -44,13 +38,11 @@ export default function Header({ ruta }) {
         <Box component="nav" sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
           {TABS.map((t) => {
             const activa = t.ruta === ruta
-            const sx = activa
-              ? { bgcolor: '#2f8fe0', color: '#fff', px: 1.5, py: 0.8, borderRadius: '4px' }
-              : { color: '#3a9ad9', px: 0.5, py: 0.8 }
-            return t.ruta ? (
-              <Box key={t.label} component="a" id={`tab-${t.ruta}`} href={`#/${t.ruta}`} sx={{ ...sx, textDecoration: 'none' }}>{t.label}</Box>
-            ) : (
-              <Box key={t.label} sx={{ ...sx, cursor: 'default' }}>{t.label}</Box>
+            return (
+              <Box key={t.label} component="a" id={`tab-${t.ruta}`} href={`#/${t.ruta}`}
+                sx={{ textDecoration: 'none', px: 1.5, py: 0.8, borderRadius: '4px', ...(activa ? { bgcolor: '#2f8fe0', color: '#fff' } : { color: '#3a9ad9' }) }}>
+                {t.label}
+              </Box>
             )
           })}
         </Box>
